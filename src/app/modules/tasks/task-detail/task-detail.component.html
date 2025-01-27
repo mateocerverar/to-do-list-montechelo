@@ -1,0 +1,11 @@
+<p-card header="Advanced Card" subheader="Card Subheader" [style]="{ width: '360px' }">
+  <!-- <p>
+    Lorem ipsum dolor sit amet...
+  </p> -->
+  <ng-template pTemplate="footer">
+    <div class="flex gap-3 mt-1">
+      <p-button pTooltip="Edit" icon="pi pi-pencil" severity="info" [rounded]="true" />
+      <p-button pTooltip="Delete" icon="pi pi-trash" severity="danger" [rounded]="true" />
+    </div>
+  </ng-template>
+</p-card>

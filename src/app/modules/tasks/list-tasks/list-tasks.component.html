@@ -1,0 +1,30 @@
+<p-fieldset>
+  <ng-template pTemplate="header">
+    <div class="flex align-items-center justify-content-around gap-2">
+      <p-button size="small" [outlined]="true" pTooltip="Create task" icon="pi pi-plus" severity="success" [rounded]="true" />
+      <span class="font-bold">To-do list</span>
+    </div>
+  </ng-template>
+  <p-dataView #dv [value]="tasks" layout="grid">
+    <ng-template let-task pTemplate="grid" let-tasks>
+      <div class="grid grid-nogutter">
+        <div class="col-12 sm:col-6 md:col-4 p-2" *ngFor="let task of tasks">
+          <div class="p-4 border-1 surface-border surface-card border-round flex flex-column hover:surface-200">
+            <div class="pt-4">
+              <div class="flex flex-row justify-content-between align-items-center gap-2">
+                <span class="font-medium text-secondary text-sm">Task #{{ task.id }}</span>
+                <p-toggleButton onLabel="Finished" offLabel="Unfinished" />
+              </div>
+              <div class="flex flex-column gap-4 mt-4">
+                <span class="text-2xl font-semibold">{{ task.title }}</span>
+                <div class="flex gap-2 justify-content-around">
+                  <p-button pTooltip="Detail" icon="pi pi-eye" severity="info" [rounded]="true" [outlined]="true" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </p-dataView>
+</p-fieldset>
