@@ -1,11 +1,16 @@
-<p-card header="Advanced Card" subheader="Card Subheader" [style]="{ width: '360px' }">
-  <!-- <p>
-    Lorem ipsum dolor sit amet...
-  </p> -->
-  <ng-template pTemplate="footer">
-    <div class="flex gap-3 mt-1">
-      <p-button pTooltip="Edit" icon="pi pi-pencil" severity="info" [rounded]="true" />
-      <p-button pTooltip="Delete" icon="pi pi-trash" severity="danger" [rounded]="true" />
-    </div>
-  </ng-template>
-</p-card>
+<div class="flex">
+  <p-button label="Back to tasks" icon="pi pi-arrow-left" [routerLink]="'..'"></p-button>
+</div>
+@if (task) {
+<div class="flex justify-content-center align-items-center align-content-center">
+  <p-card [header]="task.title" [subheader]="task.detail">
+    <span class="text-small"><strong>Estimated date:</strong>{{task.estimatedDate | date}}</span>
+    <ng-template pTemplate="footer">
+      <div class="flex justify-content-around">
+        <p-button pTooltip="Edit" icon="pi pi-pencil" severity="info" [rounded]="true" />
+        <p-button pTooltip="Delete" icon="pi pi-trash" severity="danger" [rounded]="true" (onClick)="deleteTask(task.id)"/>
+      </div>
+    </ng-template>
+  </p-card>
+</div>
+}

@@ -16,8 +16,8 @@ export class TasksService {
     return this.httpClient.get<Task[]>(`${urlAPI}${this.CONTROLLER}`)
   }
 
-  public getTaskById(id: number): Observable<Task>{
-    return this.httpClient.get<Task>(`${urlAPI}${this.CONTROLLER}`)
+  public getTaskById(id: string): Observable<Task>{
+    return this.httpClient.get<Task>(`${urlAPI}${this.CONTROLLER}${id}`)
   }
 
   public putTask(task: Task): Observable<number>{
@@ -25,11 +25,11 @@ export class TasksService {
   }
 
   public completeTask(task: Task): Observable<number>{
-    return this.httpClient.put<number>(`${urlAPI}${this.CONTROLLER}`, task)
+    return this.httpClient.put<number>(`${urlAPI}${this.CONTROLLER}${task.id}`, task)
   }
 
-  public deleteTask(id: number): Observable<boolean>{
-    return this.httpClient.delete<boolean>(`${urlAPI}${this.CONTROLLER}`)
+  public deleteTask(id: string): Observable<boolean>{
+    return this.httpClient.delete<boolean>(`${urlAPI}${this.CONTROLLER}${id}`)
   }
 
   public postTask(task: Task): Observable<Task[]>{

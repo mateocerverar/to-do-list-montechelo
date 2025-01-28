@@ -11,6 +11,10 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
 import { TooltipModule } from 'primeng/tooltip';
 import { SpeedDialModule } from 'primeng/speeddial';
 import { CardModule } from 'primeng/card';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { InputTextModule } from 'primeng/inputtext';
+import { CalendarModule } from "primeng/calendar";
 
 @NgModule({
   declarations: [
@@ -26,7 +30,12 @@ import { CardModule } from 'primeng/card';
     ToggleButtonModule,
     TooltipModule,
     SpeedDialModule,
-    CardModule
+    CardModule,
+    ReactiveFormsModule,
+    FormsModule,
+    OverlayPanelModule,
+    InputTextModule,
+    CalendarModule
   ]
 })
 export class TasksModule { }

@@ -1,7 +1,8 @@
 <p-fieldset>
   <ng-template pTemplate="header">
     <div class="flex align-items-center justify-content-around gap-2">
-      <p-button size="small" [outlined]="true" pTooltip="Create task" icon="pi pi-plus" severity="success" [rounded]="true" />
+      <p-button size="small" [outlined]="true" pTooltip="Create task" icon="pi pi-plus" severity="success"
+        [rounded]="true" (onClick)="op.toggle($event)" />
       <span class="font-bold">To-do list</span>
     </div>
   </ng-template>
@@ -12,13 +13,16 @@
           <div class="p-4 border-1 surface-border surface-card border-round flex flex-column hover:surface-200">
             <div class="pt-4">
               <div class="flex flex-row justify-content-between align-items-center gap-2">
-                <span class="font-medium text-secondary text-sm">Task #{{ task.id }}</span>
-                <p-toggleButton onLabel="Finished" offLabel="Unfinished" />
+                <span class="font-medium text-secondary text-sm" [ngClass]="{'line-through': task.completed}">Task #{{
+                  task.id }}</span>
+                <p-toggleButton onLabel="Finished" offLabel="Unfinished" [(ngModel)]="task.completed"
+                  (onChange)="changeTask(task)" />
               </div>
               <div class="flex flex-column gap-4 mt-4">
                 <span class="text-2xl font-semibold">{{ task.title }}</span>
                 <div class="flex gap-2 justify-content-around">
-                  <p-button pTooltip="Detail" icon="pi pi-eye" severity="info" [rounded]="true" [outlined]="true" />
+                  <p-button pTooltip="Detail" icon="pi pi-eye" severity="info" [rounded]="true" [outlined]="true"
+                    [routerLink]="task.id" />
                 </div>
               </div>
             </div>
@@ -28,3 +32,24 @@
     </ng-template>
   </p-dataView>
 </p-fieldset>
+<p-overlayPanel #op>
+  <form [formGroup]="createTask">
+    <div class="flex flex-column gap-3 w-25rem">
+      <div>
+        <span class="font-medium text-900 block mb-2">Title *</span>
+        <input pInputText class="p-fluid w-full" formControlName="title" />
+      </div>
+      <div>
+        <span class="font-medium text-900 block mb-2">Detail *</span>
+        <input pInputText class="p-fluid w-full" formControlName="detail"/>
+      </div>
+      <div>
+        <span class="font-medium text-900 block mb-2">Estimated date *</span>
+        <p-calendar class="p-fluid w-full" formControlName="estimatedDate" [minDate]="date"></p-calendar>
+      </div>
+      <div class="flex justify-content-center">
+        <p-button label="Save task" [disabled]="createTask.invalid" (onClick)="saveTask();op.hide()"></p-button>
+      </div>
+    </div>
+  </form>
+</p-overlayPanel>
